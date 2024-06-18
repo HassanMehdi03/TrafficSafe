@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <dimen name="margin_start_end">10dp</dimen>
+    <dimen name="margin">10dp</dimen>
+    <dimen name="corner_radius">10dp</dimen>
+    <dimen name="margin_top">15dp</dimen>
+    <dimen name="followUs_icons_margin_top">20dp</dimen>
+
+
+    
+</resources>

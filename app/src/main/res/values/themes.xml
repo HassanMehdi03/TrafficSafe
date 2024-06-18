@@ -1,0 +1,20 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.TrafficSafe" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+
+        <item name="android:statusBarColor">@color/action_bar_color</item>
+        <item name="android:windowBackground">@color/white</item>
+
+    </style>
+
+    <style name="Theme.TrafficSafe" parent="Base.Theme.TrafficSafe" />
+    
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/navbar_indicator_color</item>
+    </style>
+
+    <style name="MySwitch">
+        <item name="colorControlActivated">@color/switch_color</item>
+    </style>
+</resources>

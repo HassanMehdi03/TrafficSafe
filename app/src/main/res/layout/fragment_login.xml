@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    tools:context=".Fragments.LoginFrag">
+
+    <ImageView
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:src="@drawable/ic_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="120dp"
+        android:id="@+id/ivLogo"
+        android:contentDescription="@string/logo"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/trafficsafe"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivLogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:id="@+id/tvLogo"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvLogo"
+        app:hintTextColor="@color/text_color"
+        app:boxStrokeColor="@color/input_field_border_color"
+        app:cursorColor="@color/cursor_color"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="@dimen/margin_start_end"
+        android:layout_marginEnd="@dimen/margin_start_end"
+        android:id="@+id/ilMobile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/mobile_number"
+            android:id="@+id/etMobile"
+            android:inputType="number"
+
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/ilMobile"
+        app:hintTextColor="@color/text_color"
+        app:boxStrokeColor="@color/input_field_border_color"
+        app:cursorColor="@color/cursor_color"
+        android:layout_marginTop="@dimen/margin_top"
+        android:layout_marginStart="@dimen/margin_start_end"
+        android:layout_marginEnd="@dimen/margin_start_end"
+        android:id="@+id/ilPasswrod"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/toggle_tint_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/password"
+            android:id="@+id/etPassword"
+            android:inputType="textPassword"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/forgot_password"
+        android:layout_marginStart="@dimen/margin_start_end"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ilPasswrod"
+        android:layout_marginTop="@dimen/margin_top"
+        android:id="@+id/tvForgotPassword"
+        />
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/button_color"
+        android:text="@string/sign_in"
+        android:layout_marginStart="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/margin_top"
+        app:layout_constraintTop_toBottomOf="@id/tvForgotPassword"
+        android:id="@+id/btnSignin"
+        />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="45dp"
+        android:src="@drawable/ic_fingerprint"
+        android:contentDescription="@string/logo"
+        app:layout_constraintStart_toEndOf="@id/btnSignin"
+        app:layout_constraintTop_toBottomOf="@id/tvForgotPassword"
+        android:layout_marginTop="@dimen/margin_top"
+        android:layout_marginStart="20dp"
+        android:id="@+id/ivFingerPrint"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/do_not_have_account"
+        app:layout_constraintTop_toBottomOf="@id/btnSignin"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="@dimen/margin_top"
+        android:id="@+id/tvAccount"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register"
+        app:layout_constraintTop_toBottomOf="@id/btnSignin"
+        android:textStyle="bold"
+        android:textColor="@color/register_button_color"
+        app:layout_constraintStart_toEndOf="@id/tvAccount"
+        android:layout_marginTop="@dimen/margin_top"
+        android:id="@+id/tvRegister"
+        android:layout_marginStart="5dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
