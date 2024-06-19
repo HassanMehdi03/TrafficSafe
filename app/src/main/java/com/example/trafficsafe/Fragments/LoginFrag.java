@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.trafficsafe.HomePage;
 import com.example.trafficsafe.R;
@@ -31,6 +32,10 @@ public class LoginFrag extends Fragment {
 
         init();
 
+//        fingerprintEnableDialog();
+//        fingerprintNotEnableDialog();
+//          internetDialog();
+
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,6 +49,26 @@ public class LoginFrag extends Fragment {
     private void init()
     {
         btnSignIn=getView().findViewById(R.id.btnSignin);
+    }
+
+    private void internetDialog()
+    {
+        View v=LayoutInflater.from(getContext()).inflate(R.layout.no_internet_custom_dialog,null,false);
+
+        Dialog dialog=new Dialog(getContext());
+        dialog.setContentView(v);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.show();
+
+        Button btnOk;
+
+        btnOk=v.findViewById(R.id.btnOk);
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
     }
 
     private void fingerprintEnableDialog()

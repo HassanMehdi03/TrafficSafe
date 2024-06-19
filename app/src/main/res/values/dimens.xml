@@ -6,6 +6,7 @@
     <dimen name="corner_radius">10dp</dimen>
     <dimen name="margin_top">15dp</dimen>
     <dimen name="followUs_icons_margin_top">20dp</dimen>
+    <dimen name="padding">10dp</dimen>
 
 
     

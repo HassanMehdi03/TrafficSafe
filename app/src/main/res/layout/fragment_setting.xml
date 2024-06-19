@@ -278,7 +278,7 @@
         android:id="@+id/btnLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="100dp"
         android:backgroundTint="@color/button_color"
         android:text="@string/logout"
         app:icon="@drawable/ic_logout"

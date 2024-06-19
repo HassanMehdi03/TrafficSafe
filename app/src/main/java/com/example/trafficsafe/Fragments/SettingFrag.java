@@ -51,8 +51,7 @@ public class SettingFrag extends Fragment {
         // Show dialog with custom logout view
         Dialog dialog = new Dialog(requireContext());
         dialog.setContentView(dialogView);
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT); // Dialog full width and height
-        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent); // Remove background of dialog window which is parent layout
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.show();
 
         btnDCancel.setOnClickListener(v -> dialog.dismiss());

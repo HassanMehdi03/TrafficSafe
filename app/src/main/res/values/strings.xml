@@ -38,4 +38,14 @@
     <string name="urdu">Urdu</string>
     <string name="touch_id">Touch ID</string>
     <string name="follow_us_on">Follow us</string>
+    <string name="sorry">Sorry!</string>
+    <string name="please_check_your_internet_connection_and_try_again">Please check your internet connection and Try again</string>
+    <string name="no_internet_urdu">براہ کرم اپنا انٹرنیٹ کنکشن چیک کریں اور دوبارہ کوشش کریں</string>
+    <string name="update">Update</string>
+    <string name="change_password">Change Password</string>
+    <string name="password_not_shown">••••••••</string>
+    <string name="update_password">Update Password</string>
+    <string name="instructions">Instructions</string>
+    <string name="your_password_should_meet_the_following_requirements_n_contain_at_least_one_uppercase_letter_n_contain_at_least_one_lowercase_letter_n_contain_at_least_one_special_character_n_backslash_single_quote_double_quotes_backticks_ampersand_less_than_greater_than_pipe_character_dash_comma_and_space_is_not_allowed_nshould_be_between_8_and_20_characters_in_length"><![CDATA[Your password should meet the following requirements:\n-Contain at least one uppercase letter.\n-Contain at least one lowercase letter.\n-Contain at least one special character.\n-backslash(), single quote(\'), double quote(\'\'\ \'\'), backticks(`), ampersand(&), less than(<), greater than(>), pipe character(|), dash(-), comma(,) and space is not allowed.\nShould be between 8 and 20 characters in length.]]></string>
+    <string name="current_password">Current Password</string>
 </resources>
