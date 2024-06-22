@@ -1,7 +1,8 @@
 package com.example.trafficsafe.Fragments;
-
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Switch;
 
 import com.example.trafficsafe.LoginSignup;
 import com.example.trafficsafe.R;
@@ -23,8 +25,12 @@ public class SettingFrag extends Fragment {
 
     private ImageView ivFacebook, ivTwitter, ivYoutube, ivInstagram;
     private Button btnLogout;
+    private Switch swTouchId;
+    private SharedPreferences sPref;
+    private SharedPreferences.Editor editor;
 
-    public SettingFrag() {
+    public SettingFrag()
+    {
         // Required empty public constructor
     }
 
@@ -34,6 +40,32 @@ public class SettingFrag extends Fragment {
         init(view);
         setSocialMediaClickListeners();
         setLogoutClickListener();
+        buttonsStateCheckers();
+
+        swTouchId.setOnClickListener(v->touchIDEnable());
+
+
+
+    }
+
+    private void buttonsStateCheckers() {
+        boolean isTouchIdOn = sPref.getBoolean("Key_touchIdIsOn", false);
+        swTouchId.setChecked(isTouchIdOn);
+    }
+
+    private void touchIDEnable()
+    {
+        if(swTouchId.isChecked())
+        {
+            editor.putBoolean("Key_touchIdIsOn",true);
+        }
+        else
+        {
+            editor.putBoolean("Key_touchIdIsOn",false);
+        }
+
+        editor.apply();
+
     }
 
     private void setLogoutClickListener() {
@@ -90,5 +122,10 @@ public class SettingFrag extends Fragment {
         ivYoutube = view.findViewById(R.id.ivYoutube);
         ivInstagram = view.findViewById(R.id.ivInstagram);
         btnLogout = view.findViewById(R.id.btnLogout);
+        swTouchId= view.findViewById(R.id.touchId);
+        sPref = requireContext().getSharedPreferences("user_settings", Context.MODE_PRIVATE);
+        editor = sPref.edit();
     }
+
+
 }

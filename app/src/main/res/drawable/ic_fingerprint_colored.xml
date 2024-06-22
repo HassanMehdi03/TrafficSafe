@@ -10,16 +10,16 @@
       android:strokeWidth="2.8"
       android:fillAlpha="0.9">
     <aapt:attr name="android:fillColor">
-      <gradient 
+      <gradient
           android:startX="4.164"
           android:startY="4.193"
           android:endX="43.837"
           android:endY="44.134"
           android:type="linear">
         <item android:offset="0" android:color="#FF3F3F3F"/>
-        <item android:offset="0.11" android:color="#61CC65"/>
-        <item android:offset="0.449" android:color="#3FA243"/>
-        <item android:offset="0.934" android:color="#1E6F21"/>
+        <item android:offset="0.11" android:color="#596AD3"/>
+        <item android:offset="0.449" android:color="#3949AB"/>
+        <item android:offset="0.934" android:color="#2B3887"/>
         <item android:offset="1" android:color="#003F3F3F"/>
       </gradient>
     </aapt:attr>
@@ -37,3 +37,5 @@
       android:pathData="m28.445,33.457c-2.899,-0.632 -5.133,-3.186 -5.384,-6.154 -0.079,-0.938 -0.052,-1.062 0.273,-1.236 0.619,-0.331 0.976,0.016 1.1,1.069 0.311,2.647 2.257,4.644 4.874,5.002 1.281,0.175 1.692,0.667 1.075,1.284 -0.309,0.309 -0.653,0.315 -1.939,0.035z"
       android:fillColor="#fff"/>
 </vector>
+
+

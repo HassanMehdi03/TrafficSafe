@@ -1,26 +1,38 @@
 package com.example.trafficsafe.Fragments;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.biometric.BiometricManager;
+import androidx.biometric.BiometricPrompt;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-
+import android.widget.ImageView;
+import android.widget.TextView;
 import com.example.trafficsafe.HomePage;
 import com.example.trafficsafe.R;
+
+import java.util.concurrent.Executor;
 
 public class LoginFrag extends Fragment {
 
     private Button btnSignIn;
+    private TextView tvRegister;
+    private ImageView ivFingerprint;
+    private SharedPreferences sPref;
+    private SharedPreferences.Editor editor;
+
 
     public LoginFrag() {
         // Required empty public constructor
@@ -30,25 +42,45 @@ public class LoginFrag extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        init();
+        init(view);
 
-//        fingerprintEnableDialog();
-//        fingerprintNotEnableDialog();
 //          internetDialog();
 
-        btnSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(requireActivity(), HomePage.class));
-                requireActivity().finish();
-            }
-        });
-
+        btnSignIn.setOnClickListener(v->moveToHomePage());
+        tvRegister.setOnClickListener(v->moveToSignUpFrag());
+        ivFingerprint.setOnClickListener(v->showFingerprintDialog());
     }
 
-    private void init()
+    private void showFingerprintDialog()
     {
-        btnSignIn=getView().findViewById(R.id.btnSignin);
+        if(sPref.getBoolean("Key_touchIdIsOn",true))
+        {
+            fingerprintEnableDialog();
+        }
+        else
+        {
+            fingerprintNotEnableDialog();
+        }
+    }
+
+    private void init(View view)
+    {
+        btnSignIn=view.findViewById(R.id.btnSignin);
+        tvRegister=view.findViewById(R.id.tvRegister);
+        ivFingerprint=view.findViewById(R.id.ivFingerprint);
+        sPref = requireContext().getSharedPreferences("user_settings", Context.MODE_PRIVATE);
+        editor = sPref.edit();
+    }
+
+    private void moveToSignUpFrag()
+    {
+        requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main,new SignupFrag()).commit();
+    }
+
+    private void moveToHomePage()
+    {
+        startActivity(new Intent(requireActivity(), HomePage.class));
+        requireActivity().finish();
     }
 
     private void internetDialog()
@@ -74,22 +106,73 @@ public class LoginFrag extends Fragment {
     private void fingerprintEnableDialog()
     {
         View v=LayoutInflater.from(getContext()).inflate(R.layout.fingerprint_enable_custom_dialog,null,false);
+
+        ImageView ivDialogFingerprint;
+        ivDialogFingerprint=v.findViewById(R.id.ivFingerprintColored);
+
         Dialog dialog=new Dialog(getContext());
         dialog.setContentView(v);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setGravity(Gravity.BOTTOM);
         dialog.show();
+
+        BiometricVerification(dialog,ivDialogFingerprint);
+    }
+
+    private void BiometricVerification(Dialog dialog,ImageView ivDialogFingerprint)
+    {
+        Executor executor= ContextCompat.getMainExecutor(requireContext());
+
+        BiometricPrompt biometricPrompt=new BiometricPrompt(requireActivity(), executor, new BiometricPrompt.AuthenticationCallback() {
+            @Override
+            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                super.onAuthenticationError(errorCode, errString);
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
+                super.onAuthenticationSucceeded(result);
+                ivDialogFingerprint.setImageResource(R.drawable.ic_tick);
+                moveToHomePage();
+            }
+
+            @Override
+            public void onAuthenticationFailed() {
+                super.onAuthenticationFailed();
+                ivDialogFingerprint.setImageResource(R.drawable.ic_invalid);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ivDialogFingerprint.setImageResource(R.drawable.ic_fingerprint_colored);
+                    }
+                },  1000);
+            }
+        });
+
+        BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                .setTitle("Biometric Authentication")
+                .setNegativeButtonText("Cancel")
+                .build();
+        biometricPrompt.authenticate(promptInfo);
     }
 
     private void fingerprintNotEnableDialog()
     {
         View v=LayoutInflater.from(getContext()).inflate(R.layout.fingerprint_not_enable_custom_design,null,false);
+
+        Button btnOk=v.findViewById(R.id.btnOk);
+
         Dialog dialog=new Dialog(getContext());
         dialog.setContentView(v);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.show();
+
+        btnOk.setOnClickListener(v1 -> dialog.dismiss());
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

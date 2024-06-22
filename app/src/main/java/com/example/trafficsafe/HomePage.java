@@ -3,11 +3,7 @@ package com.example.trafficsafe;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -27,7 +23,7 @@ public class HomePage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_home_page);
         init();
         initFragment();
 
@@ -77,19 +73,11 @@ public class HomePage extends AppCompatActivity {
         if (setting.isAdded()) {
             transaction.hide(setting);
         }
-
         transaction.show(fragment).commit();
     }
 
-    private void init() {
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_home_page);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-
+    private void init()
+    {
         manager = getSupportFragmentManager();
         bottomNavigationBar = findViewById(R.id.bottomNavigation);
     }

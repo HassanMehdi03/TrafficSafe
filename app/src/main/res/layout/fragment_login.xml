@@ -118,7 +118,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvForgotPassword"
         android:layout_marginTop="@dimen/margin_top"
         android:layout_marginStart="20dp"
-        android:id="@+id/ivFingerPrint"
+        android:id="@+id/ivFingerprint"
         />
 
     <TextView

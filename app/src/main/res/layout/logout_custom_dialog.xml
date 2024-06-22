@@ -60,7 +60,7 @@
             android:layout_marginStart="@dimen/margin_start_end"
             android:layout_marginEnd="@dimen/margin_start_end"
             android:layout_marginBottom="5dp"
-            android:backgroundTint="@color/button_color"
+            android:backgroundTint="#807878"
             android:text="@string/cancel"
             android:id="@+id/btnDCancel"
             />

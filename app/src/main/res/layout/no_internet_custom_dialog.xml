@@ -60,7 +60,7 @@
             android:layout_marginEnd="@dimen/margin_start_end"
             android:layout_marginTop="@dimen/margin_top"
             android:layout_marginBottom="5dp"
-            android:backgroundTint="#FF0000"
+            android:backgroundTint="@color/ok_button_color"
             android:text="@string/ok"
             android:id="@+id/btnOk"
             />

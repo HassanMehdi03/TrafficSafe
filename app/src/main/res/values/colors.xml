@@ -15,8 +15,7 @@
     <color name="radio_button_color">#30AC35</color>
     <color name="switch_color">#30AC35</color>
     <color name="register_button_color">#E6004E</color>
-
-
+    <color name="ok_button_color">#BF1818</color>
 
 
 </resources>
