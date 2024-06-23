@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -18,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Switch;
 
+import com.example.trafficsafe.HomePage;
 import com.example.trafficsafe.LoginSignup;
 import com.example.trafficsafe.R;
 
@@ -43,8 +45,6 @@ public class SettingFrag extends Fragment {
         buttonsStateCheckers();
 
         swTouchId.setOnClickListener(v->touchIDEnable());
-
-
 
     }
 
@@ -90,7 +90,8 @@ public class SettingFrag extends Fragment {
 
         btnDLogout.setOnClickListener(v -> {
             dialog.dismiss();
-            startActivity(new Intent(requireContext(), LoginSignup.class));
+            startActivity(new Intent(requireActivity(), LoginSignup.class));
+            requireActivity().finish();
         });
     }
 

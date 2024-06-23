@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.biometric.BiometricManager;
@@ -20,6 +22,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.trafficsafe.HomePage;
 import com.example.trafficsafe.R;
 
@@ -49,6 +53,7 @@ public class LoginFrag extends Fragment {
         btnSignIn.setOnClickListener(v->moveToHomePage());
         tvRegister.setOnClickListener(v->moveToSignUpFrag());
         ivFingerprint.setOnClickListener(v->showFingerprintDialog());
+
     }
 
     private void showFingerprintDialog()
@@ -122,6 +127,15 @@ public class LoginFrag extends Fragment {
 
     private void BiometricVerification(Dialog dialog,ImageView ivDialogFingerprint)
     {
+        BiometricManager biometricManager=BiometricManager.from(requireContext());
+
+        if(biometricManager.canAuthenticate()==BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE)
+        {
+            Toast.makeText(requireContext(), "No biometric features available on this device.", Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
+            return;
+        }
+
         Executor executor= ContextCompat.getMainExecutor(requireContext());
 
         BiometricPrompt biometricPrompt=new BiometricPrompt(requireActivity(), executor, new BiometricPrompt.AuthenticationCallback() {
